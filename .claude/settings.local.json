@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(unzip:*)",
+      "Bash(python -c \"import zipfile; zf=zipfile.ZipFile\\(''sarvam_output_BPC CNC RICHMEN FOREX PRIVATE LIMITED_C172699_Annexure.pdf.zip''\\); print\\(''\\\\n''.join\\(zf.namelist\\(\\)\\)\\)\")",
+      "Bash(python:*)",
+      "Bash(./venv/Scripts/python.exe:*)",
+      "Bash(./venv/Scripts/pip.exe install:*)"
+    ]
+  }
+}
