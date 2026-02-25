@@ -1,6 +1,6 @@
 from langchain_openai import ChatOpenAI
-from langchain.schema import AIMessage, HumanMessage, SystemMessage
-from langchain.output_parsers import PydanticOutputParser
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
+from langchain_core.output_parsers import PydanticOutputParser
 from pydantic import BaseModel, Field
 from typing import Optional, Dict, Any
 import json
