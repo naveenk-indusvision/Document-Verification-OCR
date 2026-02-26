@@ -58,9 +58,14 @@ class OpenAITextExtractor:
         if api_key:
             self.client = openai.OpenAI(api_key=api_key)
         else:
-            api_key = os.getenv('OPENAI_API_KEY') or st.secrets.get('OPENAI_API_KEY', '')
+            api_key = os.getenv('OPENAI_API_KEY', '')
             if not api_key:
-                raise ValueError("OpenAI API key not provided. Set OPENAI_API_KEY environment variable or pass api_key parameter.")
+                try:
+                    api_key = st.secrets["OPENAI_API_KEY"]
+                except (KeyError, FileNotFoundError):
+                    pass
+            if not api_key:
+                raise ValueError("OpenAI API key not provided. Set OPENAI_API_KEY environment variable or add to Streamlit secrets.")
             self.client = openai.OpenAI(api_key=api_key)
 
     SYSTEM_PROMPT = (

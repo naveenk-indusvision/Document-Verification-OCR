@@ -13,7 +13,19 @@ from document_validator import DocumentValidator
 
 load_dotenv()
 
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
+
+def _get_api_key() -> str:
+    """Load API key: .env for local, st.secrets for Streamlit Cloud."""
+    key = os.environ.get("OPENAI_API_KEY", "")
+    if not key:
+        try:
+            key = st.secrets["OPENAI_API_KEY"]
+        except (KeyError, FileNotFoundError):
+            key = ""
+    return key
+
+
+OPENAI_API_KEY = _get_api_key()
 
 
 @st.cache_resource
