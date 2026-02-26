@@ -45,7 +45,7 @@ class DataExtractor:
     def __init__(self, api_key: str):
         """Initialize the data extractor with OpenAI API key"""
         self.chat = ChatOpenAI(
-            model_name="gpt-5",
+            model_name="gpt-4o-mini",
             openai_api_key=api_key,
             temperature=0  # Low temperature for consistent extraction
         )
