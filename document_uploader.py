@@ -25,24 +25,19 @@ def _get_api_key() -> str:
     return key
 
 
-OPENAI_API_KEY = _get_api_key()
-
-
-@st.cache_resource
 def get_document_processor():
-    """Get or create the document processing pipeline (OpenAI-only)."""
+    """Get or create the document processing pipeline."""
     try:
-        return DocumentProcessor(openai_api_key=OPENAI_API_KEY)
+        return DocumentProcessor(openai_api_key=_get_api_key())
     except Exception as e:
         st.error(f"Failed to initialize document processor: {e}")
         return None
 
 
-@st.cache_resource
 def get_data_extractor():
-    """Get or create data extractor"""
+    """Get or create data extractor (fallback only)"""
     try:
-        return DataExtractor(api_key=OPENAI_API_KEY)
+        return DataExtractor(api_key=_get_api_key())
     except Exception as e:
         st.error(f"Failed to initialize data extractor: {e}")
         return None
